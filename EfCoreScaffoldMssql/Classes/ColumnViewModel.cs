@@ -56,7 +56,7 @@ namespace EfCoreScaffoldMssql.Classes
                         return typeDef;
                 }
 
-                if (IsNullable)
+                if (IsNullable && TypeName != "geometry")
                     return typeDef + "?";
 
                 return typeDef;
@@ -123,6 +123,9 @@ namespace EfCoreScaffoldMssql.Classes
                     case "nchar":
                     case "char":
                         return "string";
+
+                    case "geometry":
+                        return "Point";
 
                     default:
                         return "object";
